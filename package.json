@@ -2,7 +2,7 @@
   "name": "f-cache-memory",
   "private": false,
   "license": "MIT",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "缓存库",
   "author": "fxss5201",
   "repository": {
