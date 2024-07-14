@@ -1,5 +1,9 @@
 # f-cache-memory
 
+```sh
+npm i f-cache-memory
+```
+
 缓存库
 
 ```ts
@@ -42,3 +46,68 @@ console.log(cache.getCacheToArray())
 | `goPostionCache` | `num: number` | `any` | 相对当前缓存获取缓存，1为后一个，-1为前一个 |
 | `goAbsPostionCache` | `num: number` | `any` | 按照设置顺序获取第 `num` 个缓存 |
 | `getCacheToArray` | - | `[string, any][]` | 按设置顺序转换为数组 |
+
+## 用途
+
+### 接口缓存
+
+[例子](https://github.com/fxss5201/vue-components/blob/main/src/service/httpCache.ts#L2)
+
+```ts
+// httpCache.ts
+import type { AxiosRequestConfig } from 'axios'
+import CacheMemory from 'f-cache-memory'
+
+const httpCache = new CacheMemory()
+// const httpCache = new CacheMemory(100, 1000)
+
+export function configToKey(config: AxiosRequestConfig): string {
+  let key = config.url as string
+  if (config.params) {
+    key += JSON.stringify(config.params)
+  }
+  return key
+}
+
+export default httpCache
+```
+
+对 `axios` 封装调整如下
+
+```ts
+...
+import httpCache, { configToKey } from './httpCache'
+...
+instance.interceptors.response.use(
+  (response) => {
+    if (response.status === 200 && response.config.method === 'get') {
+      const curHttpCacheKey = configToKey(response.config)
+      httpCache.setCache(curHttpCacheKey, response)
+    }
+    return response
+  },
+  (error) => {
+    return Promise.reject(error)
+  }
+)
+...
+export function get<T = any>(url: string, config: AxiosRequestConfig = {}): Promise<T> {
+  const curHttpCacheKey: string = configToKey({
+    url,
+    ...config
+  })
+  if (!httpCache.hasCache(curHttpCacheKey)) {
+    const httpRequest = instance.get(url, config)
+    httpCache.setCache(curHttpCacheKey, httpRequest)
+    return httpRequest as Promise<T>
+  } else {
+    return Promise.resolve(httpCache.getCache(curHttpCacheKey))
+  }
+}
+```
+
+首先将请求做个封装，在 `get` 请求发送之前就判断是否在缓存内，在返回拦截器 `interceptors.response` 中设置缓存值。
+
+### 撤销功能
+
+在某些需要撤销功能的内，本缓存支持 `getNowCache`/`getPreviousCache`/`getNextCache`/`goPostionCache`/`goAbsPostionCache` 等多种缓存操作方式。
