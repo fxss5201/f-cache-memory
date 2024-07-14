@@ -1,3 +1,17 @@
-export class CacheMemory {
-  hasCache(key: string)
+export default class CacheMemory {
+    #private;
+    constructor(size?: number, expiration?: number);
+    hasCache(key: string): boolean;
+    setCache(key: string, data: any): void;
+    getCache(key: string): any;
+    deleteCache(key: string): void;
+    deleteCacheByStarts(url: string): void;
+    clearCache(): void;
+    cacheSize(): number;
+    getNowCache(): any;
+    getPreviousCache(): any;
+    getNextCache(): any;
+    goPostionCache(num: number): any;
+    goAbsPostionCache(num: number): any;
+    getCacheToArray(): [string, any][];
 }

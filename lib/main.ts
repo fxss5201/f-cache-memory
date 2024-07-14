@@ -1,4 +1,3 @@
-import type { AxiosRequestConfig } from 'axios'
 interface CacheValueType {
   dateTime: number,
   data: any
@@ -47,7 +46,7 @@ export default class CacheMemory {
 
   deleteCache(key: string) {
     this.#delteCacheKeyList(key)
-    return this.#cacheMap.delete(key)
+    this.#cacheMap.delete(key)
   }
 
   deleteCacheByStarts(url: string) {
@@ -61,10 +60,10 @@ export default class CacheMemory {
   clearCache() {
     this.#cacheKeyList = []
     this.#position = 0
-    return this.#cacheMap.clear()
+    this.#cacheMap.clear()
   }
 
-  cacheSize () {
+  cacheSize(): number {
     return this.#cacheMap.size
   }
 
@@ -124,14 +123,6 @@ export default class CacheMemory {
   #getCacheByIndex(index: number) {
     const nowCacheKey = this.#cacheKeyList[index]
     return this.getCache(nowCacheKey)
-  }
-
-  configToKey(config: AxiosRequestConfig) {
-    let key = config.url
-    if (config.params) {
-      key += JSON.stringify(config.params)
-    }
-    return key
   }
 
   #deleteExpirationCache(dateTime: number) {

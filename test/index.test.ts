@@ -135,16 +135,6 @@ test(`getCacheToArray`, () => {
   expect(Cache.getCacheToArray()).toEqual([['aaa', 111], ['bbb', 222]])
 })
 
-test(`configToKey`, () => {
-  const Cache = new CacheMemory()
-  expect(Cache.configToKey({
-    url: '/api/list',
-    params: {
-      page: 1
-    }
-  })).toBe('/api/list{"page":1}')
-})
-
 test(`beforeAddCheckSize 2`, () => {
   const Cache = new CacheMemory(2)
   Cache.setCache('aaa', 111)
