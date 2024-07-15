@@ -169,3 +169,12 @@ test(`deleteExpirationCache 2000`, async () => {
   Cache.setCache('ddd', 444)
   expect(Cache.getCacheToArray()).toEqual([['ccc', 333], ['ddd', 444]])
 })
+
+test(`setCache add expiration`, async () => {
+  const Cache = new CacheMemory(100, 2000)
+  Cache.setCache('aaa', 111)
+  Cache.setCache('bbb', 222, 800)
+  await sleep(1000)
+  Cache.setCache('ccc', 333)
+  expect(Cache.getCacheToArray()).toEqual([['aaa', 111], ['ccc', 333]])
+})

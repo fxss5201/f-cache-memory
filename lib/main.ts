@@ -23,15 +23,16 @@ export default class CacheMemory {
     this.#deleteExpirationCache(dateTime)
     if (this.#cacheMap.has(key)) {
       const curCache = this.#cacheMap.get(key)
-      return dateTime - (curCache as CacheValueType).dateTime < this.#expiration
+      return dateTime < (curCache as CacheValueType).dateTime
     }
     return false
   }
 
-  setCache(key: string, data: any) {
+  setCache(key: string, data: any, expiration?: number) {
+    const expirationTime = expiration ?? this.#expiration
     if (this.#position !== this.#cacheKeyList.length - 1) this.#beforeAddDeleteNextCache()
     if (this.#cacheKeyList.length >= this.#size) this.#beforeAddCheckSize()
-    const dateTime = new Date().getTime()
+    const dateTime = new Date().getTime() + expirationTime
     if (this.hasCache(key)) this.deleteCache(key)
     this.#addCacheKeyList(key)
     this.#cacheMap.set(key, {
@@ -51,9 +52,7 @@ export default class CacheMemory {
 
   deleteCacheByStarts(url: string) {
     for (const key of this.#cacheMap.keys()) {
-      if (key.startsWith(url)) {
-        this.deleteCache(key)
-      }
+      key.startsWith(url) && this.deleteCache(key)
     }
   }
 
@@ -72,9 +71,7 @@ export default class CacheMemory {
   }
 
   getPreviousCache() {
-    if (this.#position > 0) {
-      this.#position -= 1
-    }
+    this.#position > 0 && (this.#position -= 1)
     return this.#getCacheByIndex(this.#position)
   }
 
@@ -127,7 +124,7 @@ export default class CacheMemory {
 
   #deleteExpirationCache(dateTime: number) {
     for (const [key, value] of this.#cacheMap.entries()) {
-      if (dateTime - value.dateTime > this.#expiration) {
+      if (dateTime > value.dateTime) {
         this.deleteCache(key)
         this.#delteCacheKeyList(key)
       }
