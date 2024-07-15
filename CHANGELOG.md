@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.4](https://github.com/fxss5201/f-cache-memory/compare/v0.0.3...v0.0.4) (2024-07-15)
+
+
+### Features
+
+* change package.json ([d9ff4e9](https://github.com/fxss5201/f-cache-memory/commit/d9ff4e9c6e0053e6d3688e907d491abb374a9285))
+
 ## [0.0.3](https://github.com/fxss5201/f-cache-memory/compare/v0.0.2...v0.0.3) (2024-07-15)
 
 
