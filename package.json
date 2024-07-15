@@ -2,7 +2,7 @@
   "name": "f-cache-memory",
   "private": false,
   "license": "MIT",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "keywords": [
     "cache",
     "axios-cache"
@@ -30,11 +30,16 @@
     "dev": "vite",
     "test": "vitest --ui",
     "build": "tsc && vite build",
+    "release": "commit-and-tag-version",
     "cz": "czg"
+  },
+  "commit-and-tag-version": {
+    "releaseCount": 0
   },
   "devDependencies": {
     "@vitest/coverage-istanbul": "^2.0.3",
     "@vitest/ui": "^2.0.2",
+    "commit-and-tag-version": "^12.4.1",
     "coveralls": "^3.1.1",
     "cz-git": "^1.9.3",
     "czg": "^1.9.3",
