@@ -2,7 +2,7 @@ export default class CacheMemory {
     #private;
     constructor(size?: number, expiration?: number);
     hasCache(key: string): boolean;
-    setCache(key: string, data: any): void;
+    setCache(key: string, data: any, expiration?: number): void;
     getCache(key: string): any;
     deleteCache(key: string): void;
     deleteCacheByStarts(url: string): void;
