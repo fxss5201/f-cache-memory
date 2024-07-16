@@ -1,4 +1,4 @@
-/* v8 ignore next 13 */
+/* istanbul ignore file */
 import CacheMemory from '../lib/main'
 
 const cache = new CacheMemory()
