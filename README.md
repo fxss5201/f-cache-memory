@@ -1,5 +1,7 @@
 # f-cache-memory
 
+[![Coverage Status](https://coveralls.io/repos/github/fxss5201/f-cache-memory/badge.svg?branch=main)](https://coveralls.io/github/fxss5201/f-cache-memory?branch=main)
+
 ```sh
 npm i f-cache-memory
 ```
