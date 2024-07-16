@@ -6,6 +6,8 @@
 npm i f-cache-memory
 ```
 
+[中文文档](https://github.com/fxss5201/f-cache-memory/blob/main/README-zh_CN.md)
+
 cache memory library
 
 ```ts
