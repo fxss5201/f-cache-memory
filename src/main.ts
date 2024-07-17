@@ -1,4 +1,3 @@
-/* v8 ignore next 13 */
 import CacheMemory from '../lib/main'
 
 const cache = new CacheMemory()

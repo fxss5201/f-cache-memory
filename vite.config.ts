@@ -1,5 +1,6 @@
 /// <reference types="vitest" />
 import { defineConfig } from 'vite'
+import { coverageConfigDefaults } from 'vitest/config'
 
 export default defineConfig({
   build: {
@@ -11,7 +12,8 @@ export default defineConfig({
   },
   test: {
     coverage: {
-      enabled: true
+      enabled: true,
+      exclude: ['**/src/**', ...coverageConfigDefaults.exclude]
     },
   },
 })
