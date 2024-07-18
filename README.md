@@ -39,6 +39,24 @@ if (localStorageCache) {
 console.log(initCache.getCacheToArray())
 ```
 
+Vue:
+
+```ts
+const cacheList = ref<[string, any][]>([])
+const localCache = new CacheMemory(100, 100000, (data) => {
+  cacheList.value = data
+})
+```
+
+React:
+
+```ts
+const [cacheList, setCacheList] = useState<[string, any][]>([])
+const localCache = new CacheMemory(100, 100000, (data) => {
+  setCacheList(data)
+})
+```
+
 ## Initialize parameters
 
 |parameter|default|description|version|

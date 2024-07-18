@@ -37,6 +37,24 @@ if (localStorageCache) {
 console.log(initCache.getCacheToArray())
 ```
 
+Vue:
+
+```ts
+const cacheList = ref<[string, any][]>([])
+const localCache = new CacheMemory(100, 100000, (data) => {
+  cacheList.value = data
+})
+```
+
+React:
+
+```ts
+const [cacheList, setCacheList] = useState<[string, any][]>([])
+const localCache = new CacheMemory(100, 100000, (data) => {
+  setCacheList(data)
+})
+```
+
 ## 初始化参数
 
 |参数|默认值|描述|版本|
