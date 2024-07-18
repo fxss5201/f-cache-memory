@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.8](https://github.com/fxss5201/f-cache-memory/compare/v0.0.7...v0.0.8) (2024-07-18)
+
+
+### Bug Fixes
+
+* fix test coverage ([2a3ccfc](https://github.com/fxss5201/f-cache-memory/commit/2a3ccfcc73b3a843b4ee8cfb6c2230fb3e18bdb6))
+* fix test coverage ([5635dfa](https://github.com/fxss5201/f-cache-memory/commit/5635dfa1d0bbcee9da88af5d18d9b6fd6c7d54d0))
+* fix: fix test coverage ([02bdaee](https://github.com/fxss5201/f-cache-memory/commit/02bdaeeb8a5257ffe1287807ede95eff7e6e808e))
+
 ## [0.0.7](https://github.com/fxss5201/f-cache-memory/compare/v0.0.6...v0.0.7) (2024-07-18)
 
 
