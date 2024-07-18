@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.7](https://github.com/fxss5201/f-cache-memory/compare/v0.0.6...v0.0.7) (2024-07-18)
+
+
+### Features
+
+* increase initialization cache and interaction with external data. ([16395ac](https://github.com/fxss5201/f-cache-memory/commit/16395aca72ba0b1639d806c5d5d6b332caed5948))
+
 ## [0.0.6](https://github.com/fxss5201/f-cache-memory/compare/v0.0.5...v0.0.6) (2024-07-16)
 
 ## [0.0.5](https://github.com/fxss5201/f-cache-memory/compare/v0.0.4...v0.0.5) (2024-07-15)
