@@ -11,3 +11,16 @@ console.log(cache.getNowCache())
 console.log(cache.getPreviousCache())
 console.log(cache.getNextCache())
 console.log(cache.getCacheToArray())
+
+const localCache = new CacheMemory(100, 100000, (data) => {
+  localStorage.setItem('localCache', JSON.stringify(data))
+})
+localCache.setCache('aaa', 111)
+localCache.setCache('bbb', 222)
+
+const initCache = new CacheMemory()
+const localStorageCache = localStorage.getItem('localCache')
+if (localStorageCache) {
+  initCache.initCache(JSON.parse(localStorageCache))
+}
+console.log(initCache.getCacheToArray())

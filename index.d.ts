@@ -1,6 +1,7 @@
 export default class CacheMemory {
     #private;
-    constructor(size?: number, expiration?: number);
+    constructor(size?: number, expiration?: number, change?: (data: [string, any][]) => void);
+    initCache(data: [string, any][]): void;
     hasCache(key: string): boolean;
     setCache(key: string, data: any, expiration?: number): void;
     getCache(key: string): any;
@@ -13,5 +14,5 @@ export default class CacheMemory {
     getNextCache(): any;
     goPostionCache(num: number): any;
     goAbsPostionCache(num: number): any;
-    getCacheToArray(): [string, any][];
+    getCacheToArray(needTime: boolean): [string, any][];
 }

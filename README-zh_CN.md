@@ -22,32 +22,47 @@ console.log(cache.getNowCache())
 console.log(cache.getPreviousCache())
 console.log(cache.getNextCache())
 console.log(cache.getCacheToArray())
+
+const localCache = new CacheMemory(100, 100000, (data) => {
+  localStorage.setItem('localCache', JSON.stringify(data))
+})
+localCache.setCache('aaa', 111)
+localCache.setCache('bbb', 222)
+
+const initCache = new CacheMemory()
+const localStorageCache = localStorage.getItem('localCache')
+if (localStorageCache) {
+  initCache.initCache(JSON.parse(localStorageCache))
+}
+console.log(initCache.getCacheToArray())
 ```
 
 ## 初始化参数
 
-|参数|默认值|描述|
-|------|----|------|
-| `size?: number` | `100` | 最多缓存多少个 |
-| `expiration?: number` | `Number.MAX_SAFE_INTEGER` | 按时间毫秒设置缓存有效期，超出时间会被删除 |
+|参数|默认值|描述|版本|
+|------|----|------|------|
+| `size?: number` | `100` | 最多缓存多少个 ||
+| `expiration?: number` | `Number.MAX_SAFE_INTEGER` | 按时间毫秒设置缓存有效期，超出时间会被删除 ||
+| `change?: (data: [string, any][]) => void` | - | 当缓存变更的时候，可以在此方法内同步外部数据 | 新增于 v0.0.7 |
 
 ## api
 
-|名称|参数|返回值类型|描述|
-|----|----|----|----|
-| `hasCache` | `key: string` | `boolean` | 验证是否在缓存中 |
-| `setCache` | `key: string, data: any, expiration?: number` | - | 设置缓存，`expiration` 以毫秒为单位设置缓存有效期，优先级高于初始化的 `expiration` 参数，未设置时默认为 初始化的 `expiration` |
-| `getCache` | `key: string` | `any` | 获取缓存 |
-| `deleteCache` | `key: string` | - | 删除缓存 |
-| `deleteCacheByStarts` | `url: string` | - | 根据键值的前缀删除缓存 |
-| `clearCache` | - | - | 清空缓存 |
-| `cacheSize` | - | `number` | 有多少个缓存 |
-| `getNowCache` | - | `any` | 获取当前缓存，默认为最后一个，`getPreviousCache`/`getNextCache`/`goPostionCache`/`goAbsPostionCache`都会影响当前缓存的值 |
-| `getPreviousCache` | - | `any` | 按设置顺序前一个缓存 |
-| `getNextCache` | - | `any` | 按设置顺序后一个缓存 |
-| `goPostionCache` | `num: number` | `any` | 相对当前缓存获取缓存，1为后一个，-1为前一个 |
-| `goAbsPostionCache` | `num: number` | `any` | 按照设置顺序获取第 `num` 个缓存 |
-| `getCacheToArray` | - | `[string, any][]` | 按设置顺序转换为数组 |
+|名称|参数|返回值类型|描述|版本|
+|----|----|----|----|------|
+| `initCache` | `data: [string, any][]` | - | 初始化缓存数据 | 新增于 v0.0.7 |
+| `hasCache` | `key: string` | `boolean` | 验证是否在缓存中 ||
+| `setCache` | `key: string, data: any, expiration?: number` | - | 设置缓存，`expiration` 以毫秒为单位设置缓存有效期，优先级高于初始化的 `expiration` 参数，未设置时默认为 初始化的 `expiration` | `expiration` 新增于 v0.0.3 |
+| `getCache` | `key: string` | `any` | 获取缓存 ||
+| `deleteCache` | `key: string` | - | 删除缓存 ||
+| `deleteCacheByStarts` | `url: string` | - | 根据键值的前缀删除缓存 ||
+| `clearCache` | - | - | 清空缓存 ||
+| `cacheSize` | - | `number` | 有多少个缓存 ||
+| `getNowCache` | - | `any` | 获取当前缓存，默认为最后一个，`getPreviousCache`/`getNextCache`/`goPostionCache`/`goAbsPostionCache`都会影响当前缓存的值 ||
+| `getPreviousCache` | - | `any` | 按设置顺序前一个缓存 ||
+| `getNextCache` | - | `any` | 按设置顺序后一个缓存 ||
+| `goPostionCache` | `num: number` | `any` | 相对当前缓存获取缓存，1为后一个，-1为前一个 ||
+| `goAbsPostionCache` | `num: number` | `any` | 按照设置顺序获取第 `num` 个缓存 ||
+| `getCacheToArray` | `needTime: boolean = false` | `[string, any][]` | 按设置顺序转换为数组，如果参数为 `false`，则直接返回设置的数据，如果为 `true`，则会返回 `{ dateTime: 过期时间, data: 设置数据 }` | `dateTime` 参数新增于 v0.0.7 |
 
 ## 使用场景
 
