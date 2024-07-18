@@ -7,7 +7,7 @@ async function sleep (timeout: number) {
   })
 }
 
-describe('setCache', () => {
+describe('setCache', async () => {
   test(`setCache`, () => {
     const Cache = new CacheMemory()
     Cache.setCache('aaa', 111)
@@ -31,7 +31,7 @@ describe('setCache', () => {
   })
 })
 
-describe('hasCache', () => {
+describe('hasCache', async () => {
   test(`hasCache`, () => {
     const Cache = new CacheMemory()
     Cache.setCache('aaa', 111)
@@ -55,7 +55,7 @@ describe('hasCache', () => {
   })
 })
 
-describe('getCache', () => {
+describe('getCache', async () => {
   test(`getCache`, () => {
     const Cache = new CacheMemory()
     Cache.setCache('aaa', 111)
@@ -79,7 +79,7 @@ describe('getCache', () => {
   })
 })
 
-describe('deleteCache', () => {
+describe('deleteCache', async () => {
   test(`deleteCache`, () => {
     const Cache = new CacheMemory()
     Cache.setCache('aaa', 111)
@@ -106,7 +106,7 @@ describe('deleteCache', () => {
   })
 })
 
-describe('deleteCacheByStarts', () => {
+describe('deleteCacheByStarts', async () => {
   test(`deleteCacheByStarts`, () => {
     const Cache = new CacheMemory()
     Cache.setCache('/api/students?page=1', { result: [{ name: '小明', age: 10 }] })
@@ -134,7 +134,7 @@ describe('deleteCacheByStarts', () => {
   })
 })
 
-describe('clearCache', () => {
+describe('clearCache', async () => {
   test(`clearCache`, () => {
     const Cache = new CacheMemory()
     Cache.setCache('aaa', 111)
@@ -158,7 +158,7 @@ describe('clearCache', () => {
   })
 })
 
-describe('initCache', () => {
+describe('initCache', async () => {
   test(`initCache`, () => {
     let cacheList: [string, any][] = [['aaa', 111], ['bbb', 222]]
     const Cache = new CacheMemory()
@@ -184,7 +184,7 @@ describe('initCache', () => {
   })
 })
 
-describe('cacheSize', () => {
+describe('cacheSize', async () => {
   test(`cacheSize`, () => {
     const Cache = new CacheMemory()
     Cache.setCache('aaa', 111)
@@ -210,7 +210,7 @@ describe('cacheSize', () => {
   })
 })
 
-describe('getNowCache', () => {
+describe('getNowCache', async () => {
   test(`getNowCache`, () => {
     const Cache = new CacheMemory()
     Cache.setCache('aaa', 111)
@@ -237,7 +237,7 @@ describe('getNowCache', () => {
   })
 })
 
-describe('getPreviousCache', () => {
+describe('getPreviousCache', async () => {
   test(`getPreviousCache`, () => {
     const Cache = new CacheMemory()
     Cache.setCache('aaa', 111)
@@ -254,7 +254,7 @@ describe('getPreviousCache', () => {
   })
 })
 
-describe('getNextCache', () => {
+describe('getNextCache', async () => {
   test(`getNextCache`, () => {
     const Cache = new CacheMemory()
     Cache.setCache('aaa', 111)
@@ -284,7 +284,7 @@ test(`getPreviousCache getPreviousCache getNextCache`, () => {
   expect(Cache.getNextCache()).toBe(222)
 })
 
-describe('goPostionCache', () => {
+describe('goPostionCache', async () => {
   test(`goPostionCache`, () => {
     const Cache = new CacheMemory()
     Cache.setCache('aaa', 111)
@@ -318,7 +318,7 @@ test(`goPostionCache 5`, () => {
   expect(Cache.goPostionCache(5)).toBe(222)
 })
 
-describe('goAbsPostionCache', () => {
+describe('goAbsPostionCache', async () => {
   test(`goAbsPostionCache`, () => {
     const Cache = new CacheMemory()
     Cache.setCache('aaa', 111)
@@ -352,7 +352,7 @@ test(`goAbsPostionCache 5`, () => {
   expect(Cache.goAbsPostionCache(5)).toBe(222)
 })
 
-describe('goAbsPostionCache', () => {
+describe('goAbsPostionCache', async () => {
   test(`getCacheToArray`, () => {
     const Cache = new CacheMemory()
     Cache.setCache('aaa', 111)
