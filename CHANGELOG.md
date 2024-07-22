@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.9](https://github.com/fxss5201/f-cache-memory/compare/v0.0.8...v0.0.9) (2024-07-22)
+
+
+### Features
+
+* change initCache params type ([c89fdad](https://github.com/fxss5201/f-cache-memory/commit/c89fdade336b3551bc90999fb8c96d65efc3506c))
+
 ## [0.0.8](https://github.com/fxss5201/f-cache-memory/compare/v0.0.7...v0.0.8) (2024-07-18)
 
 
