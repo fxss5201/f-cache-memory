@@ -16,13 +16,13 @@
   "type": "module",
   "files": [
     "dist",
-    "index.d.ts"
+    "types"
   ],
   "main": "./dist/cacheMemory.umd.cjs",
   "module": "./dist/cacheMemory.js",
-  "types": "./index.d.ts",
+  "types": "./types/main.d.ts",
   "exports": {
-    "types": "./index.d.ts",
+    "types": "./types/main.d.ts",
     "import": "./dist/cacheMemory.js",
     "require": "./dist/cacheMemory.umd.cjs"
   },
@@ -31,6 +31,7 @@
     "test": "vitest --ui",
     "build": "tsc && vite build",
     "release": "commit-and-tag-version",
+    "type": "tsc",
     "cz": "czg"
   },
   "devDependencies": {

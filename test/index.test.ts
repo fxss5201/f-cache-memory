@@ -1,5 +1,5 @@
 import { expect, test, describe } from 'vitest'
-import CacheMemory from '../lib/main'
+import CacheMemory, { type CacheValueType } from '../lib/main'
 
 async function sleep (timeout: number) {
   return new Promise(resolve => {
@@ -160,20 +160,23 @@ describe('clearCache', () => {
 
 describe('initCache', () => {
   test(`initCache`, () => {
-    let cacheList: [string, any][] = [['aaa', 111], ['bbb', 222]]
+    const dateTime = new Date().getTime()
+    let cacheList: [string, CacheValueType][] = [['aaa', { dateTime, data: 111 }], ['bbb', { dateTime, data: 222 }]]
     const Cache = new CacheMemory()
     Cache.initCache(cacheList)
     expect(Cache.getCacheToArray()).toEqual([['aaa', 111], ['bbb', 222]])
   })
   test(`initCache width expiration`, async () => {
-    let cacheList: [string, any][] = [['aaa', 111], ['bbb', 222]]
+    const dateTime = new Date().getTime()
+    let cacheList: [string, CacheValueType][] = [['aaa', { dateTime, data: 111 }], ['bbb', { dateTime, data: 222 }]]
     const Cache = new CacheMemory(100, 100)
     Cache.initCache(cacheList)
     await sleep(150)
     expect(Cache.cacheSize()).toBe(0)
   })
   test(`initCache width expiration change`, async () => {
-    let cacheList: [string, any][] = [['aaa', 111], ['bbb', 222]]
+    const dateTime = new Date().getTime()
+    let cacheList: [string, CacheValueType][] = [['aaa', { dateTime, data: 111 }], ['bbb', { dateTime, data: 222 }]]
     const Cache = new CacheMemory(100, 100, (data) => {
       cacheList = data
     })

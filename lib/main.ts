@@ -1,4 +1,4 @@
-interface CacheValueType {
+export interface CacheValueType {
   dateTime: number,
   data: any
 }
@@ -11,7 +11,7 @@ export default class CacheMemory {
   #cacheKeyList: string[]
   #change?: (data: [string, any][]) => void
 
-  constructor(size: number = 100, expiration: number = Number.MAX_SAFE_INTEGER, change?: (data: [string, any][]) => void) {
+  constructor(size: number = 100, expiration: number = Number.MAX_SAFE_INTEGER, change?: (data: [string, CacheValueType][]) => void) {
     this.#cacheMap = new Map()
     this.#expiration = expiration
     this.#position = 0
@@ -83,9 +83,9 @@ export default class CacheMemory {
     }
   }
 
-  initCache(data: [string, any][]) {
+  initCache(data: [string, CacheValueType][]) {
     data.forEach(item => {
-      if (!this.hasCache(item[0])) this.setCache(item[0], item[1])
+      if (!this.hasCache(item[0])) this.setCache(item[0], item[1].data)
     });
   }
 
