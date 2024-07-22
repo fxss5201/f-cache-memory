@@ -57,19 +57,26 @@ const localCache = new CacheMemory(100, 100000, (data) => {
 })
 ```
 
+```ts
+export interface CacheValueType {
+  dateTime: number;
+  data: any;
+}
+```
+
 ## Initialize parameters
 
 |parameter|default|description|version|
 |------|----|------|----|
 | `size?: number` | `100` | How many can be cached at most ||
 | `expiration?: number` | `Number.MAX_SAFE_INTEGER` | Set the cache validity period in milliseconds, and if it exceeds the time, it will be deleted ||
-| `change?: (data: [string, any][]) => void` | - | When the cache changes, external data can be synchronized within this method | `change` in v0.0.7+ |
+| `change?: (data: [string, CacheValueType][]) => void` | - | When the cache changes, external data can be synchronized within this method | `change` in v0.0.7+ |
 
 ## api
 
 |api|parameter|typeof return|description|version|
 |----|----|----|----|----|
-| `initCache` | `data: [string, any][]` | - | Initialize cached data | `initCache` in v0.0.7+ |
+| `initCache` | `data: [string, CacheValueType][]` | - | Initialize cached data | `initCache` in v0.0.7+ |
 | `hasCache` | `key: string` | `boolean` | Verify if it is in cache ||
 | `setCache` | `key: string, data: any, expiration?: number` | - | Set cache, `expiration` sets the cache validity period in milliseconds, with priority higher than the initialized `expiration` parameter. If not set, it defaults to the initialized `expiration` parameter | `expiration` in v0.0.3+ |
 | `getCache` | `key: string` | `any` | Retrieve cache ||

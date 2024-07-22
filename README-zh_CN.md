@@ -55,19 +55,26 @@ const localCache = new CacheMemory(100, 100000, (data) => {
 })
 ```
 
+```ts
+export interface CacheValueType {
+  dateTime: number;
+  data: any;
+}
+```
+
 ## 初始化参数
 
 |参数|默认值|描述|版本|
 |------|----|------|------|
 | `size?: number` | `100` | 最多缓存多少个 ||
 | `expiration?: number` | `Number.MAX_SAFE_INTEGER` | 按时间毫秒设置缓存有效期，超出时间会被删除 ||
-| `change?: (data: [string, any][]) => void` | - | 当缓存变更的时候，可以在此方法内同步外部数据 | 新增于 v0.0.7 |
+| `change?: (data: [string, CacheValueType][]) => void` | - | 当缓存变更的时候，可以在此方法内同步外部数据 | 新增于 v0.0.7 |
 
 ## api
 
 |名称|参数|返回值类型|描述|版本|
 |----|----|----|----|------|
-| `initCache` | `data: [string, any][]` | - | 初始化缓存数据 | 新增于 v0.0.7 |
+| `initCache` | `data: [string, CacheValueType][]` | - | 初始化缓存数据 | 新增于 v0.0.7 |
 | `hasCache` | `key: string` | `boolean` | 验证是否在缓存中 ||
 | `setCache` | `key: string, data: any, expiration?: number` | - | 设置缓存，`expiration` 以毫秒为单位设置缓存有效期，优先级高于初始化的 `expiration` 参数，未设置时默认为 初始化的 `expiration` | `expiration` 新增于 v0.0.3 |
 | `getCache` | `key: string` | `any` | 获取缓存 ||
