@@ -13,7 +13,7 @@ export default defineConfig({
   test: {
     coverage: {
       enabled: true,
-      exclude: ['**/src/**', ...coverageConfigDefaults.exclude]
+      exclude: ['**/src/**', '**/scripts/**', ...coverageConfigDefaults.exclude]
     },
   },
 })

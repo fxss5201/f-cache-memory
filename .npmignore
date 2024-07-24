@@ -29,3 +29,4 @@ src
 test
 .commitlintrc.cjs
 index.html
+scripts

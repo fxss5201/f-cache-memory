@@ -29,18 +29,23 @@
   "scripts": {
     "dev": "vite",
     "test": "vitest --ui",
-    "build": "tsc && vite build",
+    "build": "npm run creatType && tsc && vite build",
     "release": "commit-and-tag-version",
+    "creatType": "npm run pretype && npm run type && npm run posttype",
+    "pretype": "tsx scripts/pretype.ts",
+    "posttype": "tsx scripts/posttype.ts",
     "type": "tsc",
     "cz": "czg"
   },
   "devDependencies": {
+    "@types/node": "^20.14.12",
     "@vitest/coverage-v8": "^2.0.3",
     "@vitest/ui": "^2.0.2",
     "commit-and-tag-version": "^12.4.1",
     "coveralls": "^3.1.1",
     "cz-git": "^1.9.3",
     "czg": "^1.9.3",
+    "tsx": "^4.16.2",
     "typescript": "^5.4.5",
     "vite": "^5.2.10",
     "vitest": "^2.0.2"
