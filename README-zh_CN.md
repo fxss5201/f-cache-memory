@@ -87,7 +87,33 @@ export interface CacheValueType {
 | `getNextCache` | - | `any` | 按设置顺序后一个缓存 ||
 | `goPostionCache` | `num: number` | `any` | 相对当前缓存获取缓存，1为后一个，-1为前一个 ||
 | `goAbsPostionCache` | `num: number` | `any` | 按照设置顺序获取第 `num` 个缓存 ||
-| `getCacheToArray` | `needTime: boolean = false` | `[string, any][]` | 按设置顺序转换为数组，如果参数为 `false`，则直接返回设置的数据，如果为 `true`，则会返回 `{ dateTime: 过期时间, data: 设置数据 }` | `dateTime` 参数新增于 v0.0.7 |
+| `getCacheToArray` | `needTime: boolean = false` | `[string, CacheValueType][] \| [string, any][]` | 按设置顺序转换为数组，如果参数为 `false`，则直接返回设置的数据，如果为 `true`，则会返回 `{ dateTime: 过期时间, data: 设置数据 }` | `dateTime` 参数新增于 v0.0.7 |
+
+``` ts
+export interface CacheValueType {
+    dateTime: number;
+    data: any;
+}
+export type isArrayNeedTime<T> = T extends true ? [string, CacheValueType][] : [string, any][];
+export default class CacheMemory {
+    #private;
+    constructor(size?: number, expiration?: number, change?: (data: [string, CacheValueType][]) => void);
+    hasCache(key: string): boolean;
+    setCache(key: string, data: any, expiration?: number): void;
+    getCache(key: string): any;
+    deleteCache(key: string): void;
+    deleteCacheByStarts(url: string): void;
+    clearCache(): void;
+    initCache(data: [string, CacheValueType][]): void;
+    cacheSize(): number;
+    getNowCache(): any;
+    getPreviousCache(): any;
+    getNextCache(): any;
+    goPostionCache(num: number): any;
+    goAbsPostionCache(num: number): any;
+    getCacheToArray<T extends boolean = false>(needTime?: T): isArrayNeedTime<T>;
+}
+```
 
 ## 使用场景
 

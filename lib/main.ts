@@ -3,6 +3,8 @@ export interface CacheValueType {
   data: any
 }
 
+export type isArrayNeedTime<T> = T extends true ? [string, CacheValueType][] : [string, any][]
+
 export default class CacheMemory {
   #cacheMap: Map<string, CacheValueType>
   #expiration: number
@@ -137,13 +139,13 @@ export default class CacheMemory {
     return this.#getCacheByIndex(this.#position)
   }
 
-  getCacheToArray(needTime: boolean = false) {
+  getCacheToArray<T extends boolean = false>(needTime?: T): isArrayNeedTime<T> {
     this.#deleteExpirationCacheAndChange(new Date().getTime())
-    return this.#onlyGetCacheToArray(needTime)
+    return this.#onlyGetCacheToArray<T>(needTime)
   }
 
-  #onlyGetCacheToArray(needTime: boolean = false) {
-    const array: [string, any][] = []
+  #onlyGetCacheToArray<T extends boolean = false>(needTime?: T): isArrayNeedTime<T> {
+    const array: isArrayNeedTime<T> = []
     for (const [key, value] of this.#cacheMap.entries()) {
       array.push([key, needTime ? value : value.data])
     }

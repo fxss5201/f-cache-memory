@@ -2,6 +2,7 @@ export interface CacheValueType {
     dateTime: number;
     data: any;
 }
+export type isArrayNeedTime<T> = T extends true ? [string, CacheValueType][] : [string, any][];
 export default class CacheMemory {
     #private;
     constructor(size?: number, expiration?: number, change?: (data: [string, CacheValueType][]) => void);
@@ -18,5 +19,5 @@ export default class CacheMemory {
     getNextCache(): any;
     goPostionCache(num: number): any;
     goAbsPostionCache(num: number): any;
-    getCacheToArray(needTime?: boolean): [string, any][];
+    getCacheToArray<T extends boolean = false>(needTime?: T): isArrayNeedTime<T>;
 }

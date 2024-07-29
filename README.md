@@ -89,7 +89,33 @@ export interface CacheValueType {
 | `getNextCache` | - | `any` | Cache the next cache in the set order ||
 | `goPostionCache` | `num: number` | `any` | Retrieve cache relative to the current cache, where 1 is the next and -1 is the previous ||
 | `goAbsPostionCache` | `num: number` | `any` | Retrieve the numth cache in the order set ||
-| `getCacheToArray` | `needTime: boolean = false` | `[string, any][]` | Convert to an array in the order set. If the parameter is `false`, return the set data directly. If it is `true`, return `{dateTime: expiration time, data: set data}` | `dateTime` parameter in v0.0.7+ |
+| `getCacheToArray` | `needTime: boolean = false` | `[string, CacheValueType][] \| [string, any][]` | Convert to an array in the order set. If the parameter is `false`, return the set data directly. If it is `true`, return `{dateTime: expiration time, data: set data}` | `dateTime` parameter in v0.0.7+ |
+
+``` ts
+export interface CacheValueType {
+    dateTime: number;
+    data: any;
+}
+export type isArrayNeedTime<T> = T extends true ? [string, CacheValueType][] : [string, any][];
+export default class CacheMemory {
+    #private;
+    constructor(size?: number, expiration?: number, change?: (data: [string, CacheValueType][]) => void);
+    hasCache(key: string): boolean;
+    setCache(key: string, data: any, expiration?: number): void;
+    getCache(key: string): any;
+    deleteCache(key: string): void;
+    deleteCacheByStarts(url: string): void;
+    clearCache(): void;
+    initCache(data: [string, CacheValueType][]): void;
+    cacheSize(): number;
+    getNowCache(): any;
+    getPreviousCache(): any;
+    getNextCache(): any;
+    goPostionCache(num: number): any;
+    goAbsPostionCache(num: number): any;
+    getCacheToArray<T extends boolean = false>(needTime?: T): isArrayNeedTime<T>;
+}
+```
 
 ## Usage scenario
 
