@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.11](https://github.com/fxss5201/f-cache-memory/compare/v0.0.10...v0.0.11) (2024-07-29)
+
+
+### Features
+
+* add getCacheToArray conditional type ([98edf14](https://github.com/fxss5201/f-cache-memory/commit/98edf143b2047717c14be600d54b825bf6deca8a))
+* auto creat type ([d4f2637](https://github.com/fxss5201/f-cache-memory/commit/d4f2637fc9182bb5453d216a043c68c6cf06ca6d))
+
 ## [0.0.10](https://github.com/fxss5201/f-cache-memory/compare/v0.0.9...v0.0.10) (2024-07-22)
 
 
