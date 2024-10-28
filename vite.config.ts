@@ -11,12 +11,11 @@ export default defineConfig({
       fileName: 'cacheMemory'
     }
   },
-  plugins: [
-    dts({
-      outDir: 'types',
-      rollupTypes: true
-    })
-  ],
+  plugins: [dts({
+    outDir: 'types',
+    rollupTypes: true,
+    include: './lib/**'
+  })],
   test: {
     coverage: {
       enabled: true,
