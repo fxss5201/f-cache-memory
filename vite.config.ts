@@ -1,6 +1,7 @@
 /// <reference types="vitest" />
 import { defineConfig } from 'vite'
 import { coverageConfigDefaults } from 'vitest/config'
+import dts from 'vite-plugin-dts'
 
 export default defineConfig({
   build: {
@@ -10,6 +11,12 @@ export default defineConfig({
       fileName: 'cacheMemory'
     }
   },
+  plugins: [
+    dts({
+      outDir: 'types',
+      rollupTypes: true
+    })
+  ],
   test: {
     coverage: {
       enabled: true,

@@ -29,12 +29,8 @@
   "scripts": {
     "dev": "vite",
     "test": "vitest --ui",
-    "build": "npm run creatType && tsc && vite build",
+    "build": "tsc && vite build",
     "release": "commit-and-tag-version",
-    "creatType": "npm run pretype && npm run type && npm run posttype",
-    "pretype": "tsx scripts/pretype.ts",
-    "posttype": "tsx scripts/posttype.ts",
-    "type": "tsc",
     "cz": "czg"
   },
   "devDependencies": {
@@ -46,8 +42,9 @@
     "cz-git": "^1.9.3",
     "czg": "^1.9.3",
     "tsx": "^4.16.2",
-    "typescript": "^5.4.5",
+    "typescript": "^5.4.2",
     "vite": "^5.2.10",
+    "vite-plugin-dts": "^4.3.0",
     "vitest": "^2.0.2"
   },
   "config": {
