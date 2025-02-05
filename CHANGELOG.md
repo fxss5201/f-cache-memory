@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.14](https://github.com/fxss5201/f-cache-memory/compare/v0.0.13...v0.0.14) (2025-02-05)
+
+
+### Features
+
+* setCache data with cloneDeep ([193f90a](https://github.com/fxss5201/f-cache-memory/commit/193f90a34698db594f30f64401246b2cb4c0cabc))
+
 ## [0.0.13](https://github.com/fxss5201/f-cache-memory/compare/v0.0.12...v0.0.13) (2024-10-28)
 
 ## [0.0.12](https://github.com/fxss5201/f-cache-memory/compare/v0.0.11...v0.0.12) (2024-10-28)
