@@ -1,3 +1,5 @@
+import cloneDeep from 'lodash.clonedeep'
+
 export interface CacheValueType {
   dateTime: number,
   data: any
@@ -42,7 +44,7 @@ export default class CacheMemory {
     this.#addCacheKeyList(key)
     this.#cacheMap.set(key, {
       dateTime: dateTime + expirationTime,
-      data
+      data: cloneDeep(data)
     })
     if (this.#change) {
       this.#change(this.getCacheToArray(true))
